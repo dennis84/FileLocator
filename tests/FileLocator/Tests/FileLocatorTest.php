@@ -55,4 +55,13 @@ class FileLocatorTest extends \PHPUnit_Framework_TestCase
         $result = $locator->find('../fonts/Helvetica.ttf', true);
         $this->assertEquals('http://example.com/fonts/Helvetica.ttf', $result);
     }
+    
+    public function testFindFilesByAbsolutePath()
+    {
+        $locator = new FileLocator();
+        $locator->setBasePath('http://example.com/');
+        
+        $result = $locator->find('http://example.com/css/style.css');
+        $this->assertEquals('http://example.com/css/style.css', $result);
+    }
 }

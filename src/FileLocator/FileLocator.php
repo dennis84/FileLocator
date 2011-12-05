@@ -92,7 +92,11 @@ class FileLocator
             $base = $this->currentPath;
         }
 
-        $path = $this->mergePaths($base, $resource);
+        if (0 === strpos($resource, 'http')) {
+            $path = $resource;
+        } else {
+            $path = $this->mergePaths($base, $resource);
+        }
 
         if ($plunge) {
             $this->currentPath = dirname($path);
